@@ -1,4 +1,15 @@
 {% extends 'authentication/nav.html' %}
+{% block nav %}
+  <form action="">
+  {% csrf_token %}
+  <div class="search">
+    <input class="searchStudent" type="text" name="search" required placeholder="Search">
+  <button type="submit" class="btn btn-1">Search</button>
+  </div>
+  
+  </form>
+{% endblock nav %}
+
 {% block content %}
 <table>
     <tr>
@@ -27,6 +38,7 @@
         <td>{{student.location}}</td>
         <td>{{student.gender}}</td>
         <td>{{student.notes}}</td>
+        <td><a href="{% url 'update_data' student.id %}">Edit</a></td>
         </tr>
     {% endfor %}
     {% endif %}

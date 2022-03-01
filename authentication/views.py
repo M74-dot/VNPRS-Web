@@ -103,5 +103,21 @@ def signOut(request):
 
 def show(request):
     stud=Student.objects.all()
-    
     return render(request,'authentication/showRecords.html',{'stu':stud})
+
+def update_data(request,id):
+    obj = Student.objects.get(pk=id)
+    if request.method=='POST':
+        pi=Student.objects.get(pk=id)
+        pi.student_name=request.POST.get('studentName')
+        pi.college_name=request.POST.get('collegeName')
+        pi.Specialisation=request.POST.get('specialisation')
+        pi.degree=request.POST.get('degree')
+        pi.internship=request.POST.get('internship')
+        pi.phoneNo=request.POST.get('phoneNo')
+        pi.email=request.POST.get('email')
+        pi.location=request.POST.get('location')
+        pi.gender=request.POST.get('gender')
+        pi.notes=request.POST.get('note')
+        pi.save()
+    return render(request,'authentication/update.html',{'obj':obj})

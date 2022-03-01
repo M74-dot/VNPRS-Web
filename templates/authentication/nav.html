@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>home</title>
     <link rel="stylesheet"  href="{% static 'css/style.css'%}">
+    <script src="https://kit.fontawesome.com/e2d147fdfb.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
@@ -15,8 +16,10 @@
             <ul>
                 <li class="item"><a href="home">Home</a></li>
                 {% if user.is_authenticated %}
+                
                 <li class="item"><a href="signOut">Sign Out</a></li>
                 <li class="item"><a href="show">Show Record</a></li>
+                {% block nav %}{% endblock nav %}
                 {% else %}
                 <li class="item"><a href="signUp">Sign Up</a></li>
                 <li class="item"><a href="sign">Sign In</a></li>
