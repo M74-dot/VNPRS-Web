@@ -1,0 +1,15 @@
+{% extends 'authentication/nav.html' %}
+    {% block content %}
+        <div class="signUp">
+            <form action='/sign' method="post">
+                <h2>Sign In</h2>
+            {% csrf_token %}
+                <input type="text" id="loginusername" name="loginusername" required placeholder="Username">
+                <input type="password" name="loginpassword" id="loginpassword" required placeholder="Password">
+                <button class="btn" type="submit">Sign In</button>
+            </form>
+        </div>
+        
+    
+    {% endblock content %}
+    

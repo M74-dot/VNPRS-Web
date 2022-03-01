@@ -1,0 +1,17 @@
+{% extends 'authentication/nav.html' %}
+{% block content %}
+    <div class="signUp">
+        <form action="/signUp" method="post">
+            <h2>Sign Up</h2>
+        {% csrf_token %}
+            <input type="text" id="username" name="username" required placeholder="Username">
+            <input type="email" name="email" id="email" placeholder="Email Address">
+            <input type="password" name="password" id="password" required placeholder="Password">
+            <input type="password" name="confirmPassword" id="confirmPassword" required placeholder="Confirm Password">
+            <button class="btn" type="submit">Create Account</button>
+        </form>
+    </div>
+    
+{% endblock content %}
+
+

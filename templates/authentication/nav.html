@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <link rel="stylesheet"  href="{% static 'css/style.css'%}">
+</head>
+<body>
+    <div class="container">
+        <nav id="navbar">
+            <ul>
+                <li class="item"><a href="home">Home</a></li>
+                {% if user.is_authenticated %}
+                <li class="item"><a href="signOut">Sign Out</a></li>
+                <li class="item"><a href="show">Show Record</a></li>
+                {% else %}
+                <li class="item"><a href="signUp">Sign Up</a></li>
+                <li class="item"><a href="sign">Sign In</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% block content %}{% endblock content %}
+    </div>
+
+    
+</body>

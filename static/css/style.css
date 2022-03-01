@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* design for navbar */
+#navbar{
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-family: 'Baloo Bhai 2', cursive;
+    width: 100%;
+}
+
+#navbar::before{
+    content: "";
+    background-color: black;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+#navbar ul{
+    display: flex;
+    height: 12vh;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#navbar ul li{
+    list-style: none;
+    font-size: 1.1rem;
+}
+
+#navbar ul li a{
+    font-weight: bold;
+    color: white;
+    display: flex;
+    padding: 6px 18px;
+    text-decoration: none;
+    border-radius: 20px;
+    margin: 0px 5px;
+}
+#navbar ul li a:hover{
+    color: white;
+    background-color: black;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;  
+    /* align-items: center; */
+    /* width: 100vw; */
+    
+}
+
+.container::before{
+    content: "";
+    background:url("https://images.pexels.com/photos/7135057/pexels-photo-7135057.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    position:fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    opacity: 1;
+}
+
+.container h1{
+    font-weight: bolder;
+    font-size: 4.3rem;    
+}
+
+.container .heading{
+    color: rgb(85, 78, 78);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 130px;
+    font-family: 'Heebo', sans-serif;
+}
+
+.container .heading p{
+    margin-top: 12px;
+    font-size: 20px;
+}
+
+
+.signUp{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.signUp form{
+    margin-top: 30px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.signUp form h2{
+    color: rgb(207, 66, 165);
+    font-family: 'Heebo', sans-serif;
+    margin: 10px auto;
+
+}
+
+.signUp form input,select::placeholder{
+    color: black;
+    /* text-align: center; */
+}
+.signUp form input,select{
+    background:transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    margin: 25px auto;
+    width: 80%;
+
+    font-size: 1rem;
+}
+
+.btn{
+    background: url("https://images.pexels.com/photos/7135057/pexels-photo-7135057.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    color: white;
+    width: 30%;
+    height: 35px;
+    margin: auto;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+table{
+    background-color: white;
+    width: 90%;
+    margin: 30px auto;
+}
+
+table tr td{
+    text-align: center;
+}
+th,tr{
+    border-bottom: 1px solid black;
+}
+td,th{
+    padding: 10px;
+}
