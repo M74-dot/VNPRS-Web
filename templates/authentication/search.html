@@ -25,6 +25,9 @@
       <th>Notes</th>
       <th>Edit</th>
     </tr>
+    {% if stu|length < 1 %}
+    <td>No search results</td>
+    {% endif %}
     {% if stu %}
     {% for student in stu %}
     <tr>

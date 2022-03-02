@@ -47,7 +47,7 @@ def signUp(request):
 
 
         myuser=User.objects.create_user(username,email,password)
-        myuser.save()
+        myuser.save()  
         messages.success(request,"Account Created Successfully")
 
         # Welcome Email
@@ -124,7 +124,17 @@ def update_data(request,id):
 
 def search(request):
     query=request.GET['query']
-    print(query)
-    stud=Student.objects.filter(location__icontains=query)
+    stud_StudentName=Student.objects.filter(student_name__icontains=query)
+    stud_college_name=Student.objects.filter(college_name__icontains=query)
+    stud_Specialisation=Student.objects.filter(Specialisation__icontains=query)
+    stud_degree=Student.objects.filter(degree__icontains=query)
+    stud_internship=Student.objects.filter(internship__icontains=query)
+    stud_phoneNo=Student.objects.filter(phoneNo__icontains=query)
+    stud_email=Student.objects.filter(email__icontains=query)
+    stud_location=Student.objects.filter(location__icontains=query)
+    stud_gender=Student.objects.filter(gender__icontains=query)
+    stud_notes=Student.objects.filter(notes__icontains=query)
+
+    stud=stud_StudentName | stud_college_name | stud_Specialisation | stud_degree | stud_internship | stud_phoneNo | stud_email | stud_location |stud_gender | stud_notes
     params={'stu':stud}
     return render(request,'authentication/search.html',params)
