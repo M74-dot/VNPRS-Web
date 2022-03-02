@@ -121,3 +121,10 @@ def update_data(request,id):
         pi.notes=request.POST.get('note')
         pi.save()
     return render(request,'authentication/update.html',{'obj':obj})
+
+def search(request):
+    query=request.GET['query']
+    print(query)
+    stud=Student.objects.filter(location__icontains=query)
+    params={'stu':stud}
+    return render(request,'authentication/search.html',params)

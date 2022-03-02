@@ -1,14 +1,14 @@
 {% extends 'authentication/nav.html' %}
 {% block nav %}
   <form action="search" method="get">
-  {% csrf_token %}
-  <div class="search">
-    <input class="searchStudent" type="text" id="search" name="query" required placeholder="Search">
-  <button type="submit" class="btn btn-1">Search</button>
-  </div>
-  
-  </form>
+        {% csrf_token %}
+        <div class="search">
+            <input class="searchStudent" type="text" id="search" name="query" required placeholder="Search">
+        <button type="submit" class="btn btn-1">Search</button>
+        </div>
+    </form>
 {% endblock nav %}
+
 
 {% block content %}
 <table>
