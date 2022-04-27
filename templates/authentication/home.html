@@ -5,32 +5,12 @@
         <form action='/home' method="post">
             <h2>Student Information</h2>
         {% csrf_token %}
-            <input type="text" id="studentName" name="studentName" required placeholder="Student Name">
-            <input type="text" id="collegeName" name="collegeName" required placeholder="College Name">
-            <input type="text" id="specialisation" name="specialisation" required placeholder="Specialisation">
-            <select name="degree" id="degree">
-                <option value="BE">BE</option>
-                <option value="MBA">MBA</option>
-                <option value="MCA">MCA</option>
-                <option value="Msc">Msc</option>
-                <option value="B.Com">B.Com</option>
-                <option value="BA">BA</option>
-                <option value="Others">Others</option>
-            </select>
-            <select name="internship" id="internship">
-                <option value="Web Developer">Web Developer</option>
-                <option value=" Full Stack Developer"> Full Stack Developer</option>
-                <option value="Others">Others</option>
-            </select>
+            <!-- id plate contactnumber -->
+            <input type="text" id="idplate" name="idplate" required placeholder="ID">
+            <input type="text" id="plateNo" name="plateNo" required placeholder="Plate Number">
+           
             <input type="number" id="phoneNo" name="phoneNo" required placeholder="Phone Number">
-            <input type="email" id="email" name="email" required placeholder="Email Address">
-            <input type="text" id="location" name="location" required placeholder="Your Location">
-            <select name="gender" id="gender">
-                <option value="Female">Female</option>
-                <option value="Male">Male</option>
-            </select>
-            <input type="text" id="note" name="note" required placeholder="Add a note">
-            <button class="btn" type="submit">Add a Student</button>
+            <button class="btn" type="submit">Add Plate Data</button>
         </form>
     </div>
 {% endblock content %}

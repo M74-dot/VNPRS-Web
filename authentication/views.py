@@ -12,76 +12,21 @@ from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.core.mail import EmailMessage,send_mail
 from . tokens import generate_token
-from .models import Student
+from .models import Plate
 
 # Create your views here.
 def home(request):
     if request.method=="POST":
-        student_name=request.POST.get('studentName')
-        college_name=request.POST.get('collegeName')
-        Specialisation=request.POST.get('specialisation')
-        degree=request.POST.get('degree')
-        internship=request.POST.get('internship')
+        idplate=request.POST.get('idplate')           
+        plateNo=request.POST.get('plateNo')
         phoneNo=request.POST.get('phoneNo')
-        email=request.POST.get('email')
-        location=request.POST.get('location')
-        gender=request.POST.get('gender')
-        notes=request.POST.get('note')
-        student=Student(student_name=student_name,college_name=college_name,Specialisation=Specialisation,degree=degree,internship=internship,phoneNo=phoneNo,email=email,location=location,gender=gender,notes=notes)
-        student.save()
+        plate=Plate(idplate=idplate,plateNo=plateNo,phoneNo=phoneNo)
+        plate.save()
     return render(request,'authentication/home.html')
 
-def signUp(request):
-    if request.method=="POST":
-        username=request.POST.get('username')
-        email=request.POST.get('email')
-        password=request.POST.get('password')
-
-        if User.objects.filter(username=username):
-            messages.error('User already exists!!')
-            return redirect('sign')
-        
-        if User.objects.filter(email=email):
-            messages.error('User already exists!!')
-            return redirect('sign')
-
-
-        myuser=User.objects.create_user(username,email,password)
-        myuser.save()  
-        messages.success(request,"Account Created Successfully")
-
-        # Welcome Email
-        subject='Welcome to Authentication System'
-        message="Hello "+myuser.username+ "!!\n" + "Welcome to Authentication System!!\nThank you for visiting our website\nWe have also sent you a confirmation email, Please confirm your Email address in order to activate your account\n\nThanking You\nSayali Katkar"
-
-        from_email=settings.EMAIL_HOST_USER
-        to_list=[myuser.email]
-        send_mail(subject,message,from_email,to_list,fail_silently=True)
-
-
-        # Confirm Email
-        current_site=get_current_site(request)
-        email_subject="Confirm Your Email @authentication"
-        message2=render_to_string('email_confirmation.html',{
-            'name':myuser.username,
-            'domain':current_site.domain,
-            'uid':urlsafe_base64_encode(force_bytes(myuser.pk)),
-            'token':generate_token.make_token(myuser)
-        })
-        email=EmailMessage(
-            email_subject,
-            message2,
-            settings.EMAIL_HOST_USER,
-            [myuser.email]
-        )
-        email.fail_silently=True
-        email.send()
-
-        return redirect('sign')
-
-    else:
-        return render(request,"authentication/signUp.html")
-
+def show(request):
+    stud=Plate.objects.all()
+    return render(request,'authentication/showRecords.html',{'stu':stud})
 
 def sign(request):
     if request.method=='POST':
@@ -100,41 +45,23 @@ def signOut(request):
     messages.success(request,"Logged Out Successfully")
     return redirect('home')
 
-
-def show(request):
-    stud=Student.objects.all()
-    return render(request,'authentication/showRecords.html',{'stu':stud})
-
-def update_data(request,id):
-    obj = Student.objects.get(pk=id)
-    if request.method=='POST':
-        pi=Student.objects.get(pk=id)
-        pi.student_name=request.POST.get('studentName')
-        pi.college_name=request.POST.get('collegeName')
-        pi.Specialisation=request.POST.get('specialisation')
-        pi.degree=request.POST.get('degree')
-        pi.internship=request.POST.get('internship')
-        pi.phoneNo=request.POST.get('phoneNo')
-        pi.email=request.POST.get('email')
-        pi.location=request.POST.get('location')
-        pi.gender=request.POST.get('gender')
-        pi.notes=request.POST.get('note')
-        pi.save()
-    return render(request,'authentication/update.html',{'obj':obj})
-
 def search(request):
     query=request.GET['query']
-    stud_StudentName=Student.objects.filter(student_name__icontains=query)
-    stud_college_name=Student.objects.filter(college_name__icontains=query)
-    stud_Specialisation=Student.objects.filter(Specialisation__icontains=query)
-    stud_degree=Student.objects.filter(degree__icontains=query)
-    stud_internship=Student.objects.filter(internship__icontains=query)
-    stud_phoneNo=Student.objects.filter(phoneNo__icontains=query)
-    stud_email=Student.objects.filter(email__icontains=query)
-    stud_location=Student.objects.filter(location__icontains=query)
-    stud_gender=Student.objects.filter(gender__icontains=query)
-    stud_notes=Student.objects.filter(notes__icontains=query)
+    plateID=Plate.objects.filter(idplate__icontains=query)
+    plateNumber=Plate.objects.filter(plateNo__icontains=query)
+    PhoneNo=Plate.objects.filter(phoneNo__icontains=query)
 
-    stud=stud_StudentName | stud_college_name | stud_Specialisation | stud_degree | stud_internship | stud_phoneNo | stud_email | stud_location |stud_gender | stud_notes
+    stud=plateID | plateNumber | PhoneNo
+    # print(stud)
     params={'stu':stud}
     return render(request,'authentication/search.html',params)
+
+def update_data(request,id):
+    obj = Plate.objects.get(pk=id)
+    if request.method=='POST':
+        pi=Plate.objects.get(pk=id)
+        pi.idplate=request.POST.get('idplate')
+        pi.plateNo=request.POST.get('plateNo')
+        pi.phoneNo=request.POST.get('phoneNo')
+        pi.save()
+    return render(request,'authentication/update.html',{'obj':obj})

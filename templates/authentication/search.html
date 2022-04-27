@@ -13,17 +13,9 @@
 {% block content %}
 <table>
     <tr>
-      <th>Student Name</th>
-      <th>College Name</th>
-      <th>Specialisation</th>
-      <th>Degree</th>
-      <th>Internship</th>
+      <th>Plate ID</th>
+      <th>Plate Number</th>
       <th>Phone Number</th>
-      <th>Email</th>
-      <th>Location</th>
-      <th>Gender</th>
-      <th>Notes</th>
-      <th>Edit</th>
     </tr>
     {% if stu|length < 1 %}
     <td>No search results</td>
@@ -31,17 +23,9 @@
     {% if stu %}
     {% for student in stu %}
     <tr>
-        <td>{{student.student_name}}</td>
-        <td>{{student.college_name}}</td>
-        <td>{{student.Specialisation}}</td>
-        <td>{{student.degree}}</td>
-        <td>{{student.internship}}</td>
+        <td>{{student.idplate}}</td>
+        <td>{{student.plateNo}}</td>
         <td>{{student.phoneNo}}</td>
-        <td>{{student.email}}</td>
-        <td>{{student.location}}</td>
-        <td>{{student.gender}}</td>
-        <td>{{student.notes}}</td>
-        <td><a href="{% url 'update_data' student.id %}">Edit</a></td>
         </tr>
     {% endfor %}
     {% endif %}

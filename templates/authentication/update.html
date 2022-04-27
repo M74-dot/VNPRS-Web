@@ -3,34 +3,13 @@
 {% block content %}
     <div class="signUp">
         <form action='{% url 'update_data' obj.id %}' method="post">
-            <h2>Student Information</h2>
+            <h2>Plate Information</h2>
         {% csrf_token %}
-            <input type="text" id="studentName" name="studentName" required placeholder="Student Name" value="{{obj.student_name}}">
-            <input type="text" id="collegeName" name="collegeName" required placeholder="College Name" value="{{obj.college_name}}">
-            <input type="text" id="specialisation" name="specialisation" required placeholder="Specialisation" value="{{obj.Specialisation}}">
-            <select name="degree" id="degree">
-                <option value="BE" >BE</option>
-                <option value="MBA">MBA</option>
-                <option value="MCA">MCA</option>
-                <option value="Msc">Msc</option>
-                <option value="B.Com">B.Com</option>
-                <option value="BA">BA</option>
-                <option value="Others">Others</option>
-            </select>
-            <select name="internship" id="internship">
-                <option value="Web Developer">Web Developer</option>
-                <option value=" Full Stack Developer"> Full Stack Developer</option>
-                <option value="Others">Others</option>
-            </select>
-            <input type="number" id="phoneNo" name="phoneNo" required placeholder="Phone Number" value="{{obj.phoneNo}}">
-            <input type="email" id="email" name="email" required placeholder="Email Address" value="{{obj.email}}">
-            <input type="text" id="location" name="location" required placeholder="Your Location" value="{{obj.location}}">
-            <select name="gender" id="gender">
-                <option value="Female">Female</option>
-                <option value="Male">Male</option>
-            </select>
-            <input type="text" id="note" name="note" required placeholder="Add a note" value="{{obj.notes}}">
-            <button class="btn" type="submit">Update Student</button>
+            <input type="text" id="idplate" name="idplate" required placeholder="Plate ID" value="{{obj.idplate}}">
+            <input type="text" id="colplateNolegeName" name="plateNo" required placeholder="Plate Number" value="{{obj.plateNo}}">
+            <input type="text" id="phoneNo" name="phoneNo" required placeholder="Phone Number" value="{{obj.phoneNo}}">
+            
+            <button class="btn" type="submit">Update Plate Data</button>
         </form>
     </div>
 {% endblock content %}
